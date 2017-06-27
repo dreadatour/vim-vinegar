@@ -27,9 +27,7 @@ endif
 let s:netrw_up = ''
 
 nnoremap <silent> <Plug>VinegarUp :call <SID>opendir('edit')<CR>
-if empty(maparg('-', 'n'))
-  nmap - <Plug>VinegarUp
-endif
+nmap <BS> <Plug>VinegarUp
 
 nnoremap <silent> <Plug>VinegarTabUp :call <SID>opendir('tabedit')<CR>
 nnoremap <silent> <Plug>VinegarSplitUp :call <SID>opendir('split')<CR>
@@ -104,7 +102,7 @@ function! s:setup_vinegar() abort
     " remove <CR> at the end (otherwise raises "E488: Trailing characters")
     let s:netrw_up = strpart(s:netrw_up, 0, strlen(s:netrw_up)-4)
   endif
-  nmap <buffer> - <Plug>VinegarUp
+  nmap <buffer> <BS> <Plug>VinegarUp
   cnoremap <buffer><expr> <Plug><cfile> get(<SID>relatives('.'),0,"\022\006")
   if empty(maparg('<C-R><C-F>', 'c'))
     cmap <buffer> <C-R><C-F> <Plug><cfile>
